@@ -8,7 +8,7 @@ class MyLinkedList<T> {
         var curNode: Node<T>? = headNode.getNextNode()
         var currentIndex = 0
         while (currentIndex != i) {
-            if(curNode?.getData() == null) throw IllegalArgumentException("No element for index ${i}")
+            if (curNode?.getData() == null) throw IllegalArgumentException("No element for index ${i}")
             currentIndex++
             curNode = curNode.getNextNode()
         }
@@ -85,9 +85,12 @@ class MyLinkedList<T> {
 fun main() {
     val testList = MyLinkedList<Int>(1, 1, 2, 3, 3, 3)
     val afterRemoveDuplicates = testList.removeDuplicates()
-    assert(afterRemoveDuplicates.get(0) == 1)
-    assert(afterRemoveDuplicates.get(1) == 2)
-    assert(afterRemoveDuplicates.get(2) == 4)
+    assertEquals(afterRemoveDuplicates.get(0), 1)
+    assertEquals(afterRemoveDuplicates.get(1), 2)
+    assertEquals(afterRemoveDuplicates.get(2), 3)
     println(afterRemoveDuplicates.toString())
 }
 
+fun <T> assertEquals(element1: T, element2: T) {
+    if (element1 != element2) throw IllegalArgumentException("Elements doesn't match: ${element1} ${element2}")
+}
